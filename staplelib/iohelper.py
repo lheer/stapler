@@ -6,11 +6,7 @@ import os.path
 import re
 import sys
 
-try:
-    from PyPDF2 import PdfFileWriter, PdfFileReader
-except ImportError:
-    from pyPdf import PdfFileWriter, PdfFileReader
-
+from pypdf import PdfReader, PdfWriter
 
 from . import CommandError
 import staplelib
@@ -28,11 +24,11 @@ ROTATIONS = {'u': ROTATION_NONE,
 HANDLES = {}
 
 def read_pdf(filename):
-    """Open a PDF file with PyPDF2."""
+    """Open a PDF file with pypdf."""
     if not os.path.exists(filename):
         raise CommandError("{} does not exist".format(filename))
-    pdf = PdfFileReader(open(filename, "rb"))
-    if pdf.isEncrypted:
+    pdf = PdfReader(open(filename, "rb"))
+    if pdf.is_encrypted:
         while True:
             pw = prompt_for_pw(filename)
             matched = pdf.decrypt(pw)
@@ -46,7 +42,7 @@ def read_pdf(filename):
 def write_pdf(pdf, filename):
     force = staplelib.OPTIONS.force
 
-    """Write the content of a PdfFileWriter object to a file."""
+    """Write the content of a PdfWriter object to a file."""
     if os.path.exists(filename) and not force:
         raise CommandError("File already exists: {}".format(filename))
 
@@ -123,7 +119,7 @@ def parse_ranges(handles_files_and_ranges):
                         "page range '{}'".format(handle_key, inputname))
 
             current = operations[-1]
-            max_page = current['pdf'].getNumPages()
+            max_page = len(current['pdf'].pages)
             # allow "end" as alias for the last page
             replace_end = lambda page: (
                 max_page if page.lower() == 'end' else int(page))

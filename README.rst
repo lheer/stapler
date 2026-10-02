@@ -34,6 +34,12 @@ For a list of contributors, check the ``CONTRIBUTORS`` file.
 Change log (sorta)
 ------------------
 
+- **2.0.0** Port from PyPDF2 to the maintained ``pypdf`` library
+  (``pypdf`` 6.x). Migrated to the modern snake_case API
+  (``PdfReader``/``PdfWriter``, ``add_page``, ``rotate``,
+  ``merge_page``, ``metadata``). Minimum Python version raised to 3.9
+  (required by ``pypdf`` 6.x).
+
 - **1.0.0** Port to Python 3. Replace OptionParser with more
   modern ArgumentParser. Cleaning up repository.
 

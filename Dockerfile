@@ -14,11 +14,11 @@ RUN apt-get update \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install poetry PyPDF2
-RUN git clone https://github.com/hellerbarde/stapler.git /tmp/stapler
+RUN pip3 install poetry pypdf
+RUN git clone https://github.com/lheer/stapler.git /tmp/stapler
 RUN cd /tmp/stapler \
 && poetry install \
 && poetry run tox -e py \
 && poetry build \
-&& pip3 install dist/stapler-1.0.0.tar.gz
+&& pip3 install dist/stapler-*.tar.gz
 
