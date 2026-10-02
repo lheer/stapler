@@ -18,7 +18,7 @@ RUN pip3 install poetry pypdf
 RUN git clone https://github.com/lheer/stapler.git /tmp/stapler
 RUN cd /tmp/stapler \
 && poetry install \
-&& poetry run tox -e py \
+&& poetry run pytest staplelib/tests.py \
 && poetry build \
 && pip3 install dist/stapler-*.tar.gz
 
