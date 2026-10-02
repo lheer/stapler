@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stapler"
-version = "1.0.0"
+version = "2.0.0"
 description = "Manipulate PDF documents from the command line"
 authors = ["Philip Stark", "Fred Wenzel"]
 license = "BSD-3-Clause"
@@ -14,8 +14,8 @@ packages = [
 "Bug Tracker" = "https://github.com/hellerbarde/stapler/issues"
 
 [tool.poetry.dependencies]
-python = "^3.4"
-PyPDF2 = ">=1.26"
+python = "^3.9"
+pypdf = ">=6.0,<7.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
